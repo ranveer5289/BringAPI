@@ -12,16 +12,16 @@ function execute(args : PipelineDictionary) : Number {
 		//Get postalCode & countryCode. If countryCode not supplied, get default code configured in sitepreferences
 		/** @type {dw.web.HttpParameterMap} */
 		var chpm = args.CurrentHttpParameterMap,
-			postalCode = !empty(chpm.postalCode.stringValue) ? chpm.postalCode.stringValue : '',
-			countryCode = !empty(chpm.countryCode.stringValue) ? chpm.countryCode.stringValue :
+		    postalCode = !empty(chpm.postalCode.stringValue) ? chpm.postalCode.stringValue : '',
+		    countryCode = !empty(chpm.countryCode.stringValue) ? chpm.countryCode.stringValue :
 																require('dw/system/Site').getCurrent().getCustomPreferenceValue('bringDefaultCountryCode');
 
 		if (!empty(postalCode) && !empty(countryCode)) {
 			//Get configured service instance & Url
 			var bringServiceName = require('dw/web').Resource.msg('bring.http.service.name', '_preference', 'bring.pickuppoints.http.get'),
-				/** @type {dw.svc.Service} */
-				bringHttpService = require('dw/svc').ServiceRegistry.get(bringServiceName),
-				bringApiUrl      = bringHttpService.getURL();
+			    /** @type {dw.svc.Service} */
+			    bringHttpService = require('dw/svc').ServiceRegistry.get(bringServiceName),
+			    bringApiUrl      = bringHttpService.getURL();
 
 			if (!empty(bringApiUrl)) {
 				//Construct API Url
