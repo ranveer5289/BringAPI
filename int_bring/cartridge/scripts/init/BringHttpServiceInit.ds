@@ -3,9 +3,9 @@ This is an initialization script for Bring Pickup Points HTTP Service call
 */
 
 //Configure web-service. Service name is taken from _preferences file
-require('dw/svc').ServiceRegistry.configure(require('dw/web').Resource.msg('bring.http.service.name', '_preference', 'bring.pickuppoints.http.get'), {
+require('dw/svc').ServiceRegistry.configure(require('dw/web/Resource').msg('bring.http.service.name', '_preference', 'bring.pickuppoints.http.get'), {
 
-	/**
+    /**
      *  This function creates request object.
      *  @param   {HTTPService} svc - HTTPService object
      *  @return  {Object} args - Parameters
