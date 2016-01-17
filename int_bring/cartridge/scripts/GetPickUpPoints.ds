@@ -1,0 +1,58 @@
+/**
+* 	 Demandware Script File to call Bring API Service and return in response the pickuppoints location
+*
+*    @input CurrentHttpParameterMap  : dw.web.HttpParameterMap HttpParameterMap
+*    @output BringResult : String Output
+*
+*/
+
+function execute(args : PipelineDictionary) : Number {
+
+	try {
+		//Get postalCode & countryCode. If countryCode not supplied, get default code configured in sitepreferences
+		/** @type {dw.web.HttpParameterMap} */
+		var chpm = args.CurrentHttpParameterMap,
+			postalCode = !empty(chpm.postalCode.stringValue) ? chpm.postalCode.stringValue : '',
+			countryCode = !empty(chpm.countryCode.stringValue) ? chpm.countryCode.stringValue :
+																require('dw/system/Site').getCurrent().getCustomPreferenceValue('bringDefaultCountryCode');
+
+		if (!empty(postalCode) && !empty(countryCode)) {
+			//Get configured service instance & Url
+			var bringServiceName = require('dw/web').Resource.msg('bring.http.service.name', '_preference', 'bring.pickuppoints.http.get'),
+				/** @type {dw.svc.Service} */
+				bringHttpService = require('dw/svc').ServiceRegistry.get(bringServiceName),
+				bringApiUrl      = bringHttpService.getURL();
+
+			if (!empty(bringApiUrl)) {
+				//Construct API Url
+				bringApiUrl = bringApiUrl.concat('/', countryCode, '/postalCode/', postalCode, '.json');
+
+				//By Default Bring API returns 10 results, we can control this by passing parameter 'numberOfResponses' in Url
+				var bringMaxNoOfResults = require('dw/system/Site').getCurrent().getCustomPreferenceValue('bringMaxNoOfResults');
+				if (!empty(bringMaxNoOfResults)) {
+					bringHttpService.addParam('numberOfResponses', bringMaxNoOfResults);
+				}
+				//Set modified Url back
+				bringHttpService.setURL(bringApiUrl);
+
+				//Call service
+				/** @type {dw.svc.Result} */
+				var result = bringHttpService.call();
+
+				//If successfull service call, return 'object' else return errorMessage 'object'
+				if (result.ok) {
+					args.BringResult = result.object;
+				} else if (result.status == 'ERROR') {
+					args.BringResult = result.errorMessage;
+				} else {
+					args.BringResult = {};
+				}
+			}
+		}
+	} catch (e) {
+		require('dw/system/Logger').error('Error making bring service call for postalCode {0} & countryCode {1} {2}', postalCode, countryCode, e.message);
+		return PIPELET_ERROR;
+	}
+
+    return PIPELET_NEXT;
+}

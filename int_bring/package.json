@@ -1,0 +1,6 @@
+{
+	"init": 
+	[
+		"./cartridge/scripts/init/BringHttpServiceInit.ds"
+	]
+}

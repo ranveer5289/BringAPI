@@ -1,0 +1,6 @@
+<!--- TEMPLATENAME: pickuppoints.isml --->
+<iscomment> Div to populate lat n lang for a postalCode & also button to load google map with Marker</iscomment>
+<isif condition="${dw.system.Site.getCurrent().getCustomPreferenceValue('enableBring').getValue() === 'yes'}">
+	<div id='pickup_points'></div>
+	<div id="map" style="width: 500px; height: 300px"></div>
+</isif>

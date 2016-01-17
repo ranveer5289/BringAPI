@@ -1,0 +1,3 @@
+<!--- TEMPLATENAME: pickuppoints.isml --->
+<iscontent type="application/json" charset="UTF-8" compact="true"/>
+<isprint value="${pdict.Result}" encoding="off"/>
