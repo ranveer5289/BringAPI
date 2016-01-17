@@ -14,7 +14,7 @@ function execute(args : PipelineDictionary) : Number {
 		var chpm = args.CurrentHttpParameterMap,
 		    postalCode = !empty(chpm.postalCode.stringValue) ? chpm.postalCode.stringValue : '',
 		    countryCode = !empty(chpm.countryCode.stringValue) ? chpm.countryCode.stringValue :
-																require('dw/system/Site').getCurrent().getCustomPreferenceValue('bringDefaultCountryCode');
+									 				require('dw/system/Site').getCurrent().getCustomPreferenceValue('bringDefaultCountryCode');
 
 		if (!empty(postalCode) && !empty(countryCode)) {
 			//Get configured service instance & Url
