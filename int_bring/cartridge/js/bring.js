@@ -24,7 +24,7 @@ function getPickUpPoints() {
 	if (SitePreferences.ENABLE_BRING_API) {
 		//Get required values
 		var postalCode = $(this).val(),
-			getPickUpPointUrl = Urls.getPickUpPoints;
+		    getPickUpPointUrl = Urls.getPickUpPoints;
 		//Check if response is cached in localStorage & postalCode is entered by user
 		if (getPickUpPointUrl.length > 0 && postalCode.length > 0 && !localStorage.hasOwnProperty(postalCode)) {
 			$.ajax({
@@ -65,7 +65,7 @@ function getPickUpPoints() {
 function processBringAPIResponse (data, postalCode) {
 
 	var bringAPIObject = JSON.parse(data),
-		cache = {};
+	    cache = {};
 	//if response object is non-empty & has 'pickupPoint' attribute
 	if (!_IsEmpty(bringAPIObject) && bringAPIObject.hasOwnProperty('pickupPoint')) {
 		var pickupPointsObject = bringAPIObject['pickupPoint'];
