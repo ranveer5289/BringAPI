@@ -1,5 +1,5 @@
 /**
-* 	 Demandware Script File to call Bring API Service and return in response the pickuppoints location
+*    Demandware Script File to call Bring API Service and return in response the pickuppoints location
 *
 *    @input CurrentHttpParameterMap  : dw.web.HttpParameterMap HttpParameterMap
 *    @output BringResult : String Output
