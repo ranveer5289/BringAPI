@@ -15,27 +15,27 @@ ResourceHelper.getUrls = function(pageContext) {
 
     // application urls
     var urls =  {
-        getPickUpPoints                : URLUtils.url('Bring-GetPickUpPoints').toString()
+        getPickUpPoints : URLUtils.url('Bring-GetPickUpPoints').toString()
     };
     return urls;
 }
-	/**
-	 * Get the client-side resources of a given page
-	 * @returns {Object} An objects key key-value pairs holding the resources
-	 */
-	ResourceHelper.getResources = function(pageContext) {
-		return {
-			BUTTON_GMAP_TEXT : require('dw/web/Resource').msg('button.show.maps.text', '_preferences', 'Show In Google Maps')
-		}
+/**
+ * Get the client-side resources of a given page
+ * @returns {Object} An objects key key-value pairs holding the resources
+ */
+ResourceHelper.getResources = function(pageContext) {
+	return {
+		BUTTON_GMAP_TEXT : require('dw/web/Resource').msg('button.show.maps.text', '_preferences', 'Show In Google Maps')
 	}
+}
 /**
  * Get the client-side preferences of a given page
  * @returns {Object} An objects key key-value pairs holding the preferences
  */
 ResourceHelper.getPreferences = function(pageContext) {
 	return {
-		ENABLE_BRING_API: (require('dw/system/Site').getCurrent().getCustomPreferenceValue('enableBring').getValue() === "yes"),
-		GOOGLE_MAPS_API_URL: require('dw/system/Site').getCurrent().getCustomPreferenceValue('googleMapsAPIUrl')
+		ENABLE_BRING_API : (require('dw/system/Site').getCurrent().getCustomPreferenceValue('enableBring').getValue() === "yes"),
+		GOOGLE_MAPS_API_URL : require('dw/system/Site').getCurrent().getCustomPreferenceValue('googleMapsAPIUrl')
 	};
 }
 
