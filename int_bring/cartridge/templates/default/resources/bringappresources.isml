@@ -3,7 +3,7 @@
     var ResourceHelper = require("~/cartridge/scripts/Resource");
 </isscript>
 (function(){
-	window.Urls = window.Urls || {};
+    window.Urls = window.Urls || {};
     var bringUrls = <isprint value="${JSON.stringify(ResourceHelper.getUrls())}" encoding="off"/>;
     $.extend(window.Urls, bringUrls);
 
