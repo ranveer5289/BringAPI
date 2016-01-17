@@ -131,7 +131,7 @@ function processLatNLang (responseObject, cacheIt) {
  */
 function loadGMapScript() {
 	if (typeof google === "undefined" || typeof google.maps === "undefined") {
-		var script = document.createElement("script");
+	    var script = document.createElement("script");
 	    script.type = "text/javascript";
 	    script.src = SitePreferences.GOOGLE_MAPS_API_URL;
 	    document.body.appendChild(script);
@@ -152,16 +152,16 @@ function loadMap() {
 	var mapOptions = {
 		center: center,
 		zoom : 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	//Load map in div with id 'map'
 	var map = new google.maps.Map($('#map')[0], mapOptions);
 
 	//Create & Set Marker
-    var marker=new google.maps.Marker({
-        position:center
-    });
-    marker.setMap(map);
+	var marker=new google.maps.Marker({
+		position:center
+	});
+	marker.setMap(map);
 }
 /**
  * @function
